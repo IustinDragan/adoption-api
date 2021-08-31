@@ -5,6 +5,7 @@ import com.p5.adoptions.repository.cats.Cat;
 import com.p5.adoptions.repository.dogs.Dog;
 import com.p5.adoptions.repository.shelter.AnimalShelter;
 import com.p5.adoptions.service.AnimalShelterService;
+import com.p5.adoptions.service.DTO.CatDTO;
 import com.p5.adoptions.service.DTO.ListDTO;
 import com.p5.adoptions.service.DTO.ShelterDTO;
 import org.springframework.http.HttpStatus;
@@ -18,8 +19,8 @@ import java.util.List;
 //Service-ul este dependent de Repository.
 //Servici-ul nu depinde de Web
 //Repozitory nu depinde de Serviciu
-//DTO = Data Tansport Object
-
+//DTO = Data Tansport/Transfer Object
+//Animal shelter din Repository = ShelterDTO din Service
 
 @RestController
 @RequestMapping("/api/v1/shelters")
@@ -58,12 +59,12 @@ public class AnimalShelterController {
 
     //Crearea unei metode care aduce doar Lista de Cat sau lista de Dog:
     @GetMapping("/{shelterId}/cats")  // pentru ca le aduc in functie de id-ul shalter-ului
-    public ResponseEntity<List<Cat>> getCatsForShelter (@PathVariable("shelterId") Integer shelterId){
+    public ResponseEntity<List<CatDTO>> getCatsForShelter (@PathVariable("shelterId") Integer shelterId){
         return ResponseEntity.ok(animalShelterService.findAllCatsByShelter(shelterId));
     }
 
     @PutMapping("/{shelterId}/cats")
-    public ResponseEntity<List<Cat>> addNewCatToShelter(@PathVariable("shelterId") Integer shelterId, @RequestBody Cat cat){
+    public ResponseEntity<List<CatDTO>> addNewCatToShelter(@PathVariable("shelterId") Integer shelterId, @RequestBody CatDTO cat){
         return ResponseEntity.ok(animalShelterService.addNewCatToShelter(shelterId, cat));
     }
     //adaugat de pe gitHub

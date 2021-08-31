@@ -12,8 +12,8 @@ public class ShelterAdapter {
                 .setId(shelter.getId())
                 .setName(shelter.getName())
                 .setLocation(shelter.getLocation())
-                .setCats(CatAdapter.toDTOList(shelter.getCats()));
-        //todo add dogs to dto
+                .setCats(CatAdapter.toDTOList(shelter.getCats()))
+                .setDogs(DogAdapter.toDTOList(shelter.getDogs()));
 
         //Cat, Dog, Shelter - de facut adaptere
     }
@@ -25,8 +25,8 @@ public class ShelterAdapter {
         shelter.setName(shelterDTO.getName());
         shelter.setLocation(shelterDTO.getLocation());
         shelter.setCats(CatAdapter.fromDTOList(shelterDTO.getCats()));
+        shelter.setDogs(DogAdapter.fromDTOList(shelterDTO.getDogs()));
 
-        //todo add dogs to dto
 
         return shelter;
 
